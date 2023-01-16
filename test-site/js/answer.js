@@ -83,7 +83,7 @@ console.log(`boxの位置は縦${offsetTop}px,横${offsetLeft}pxの位置`);
 
 const headerBtn = document.querySelector('.c-hamburger');
 const headerNav = document.querySelector('.p-header-nav');
-const toggleNav = function() {
+const toggleNav = function () {
   document.body.classList.toggle('is-open');
   headerBtn.classList.toggle('is-open');
   headerNav.classList.toggle('is-open');
@@ -118,14 +118,14 @@ headerBtn.addEventListener('click', function () {
 // パターン２
 const tabs = document.querySelectorAll('.p-tab__btn');
 const tabContents = document.querySelectorAll('.p-tab__content');
-tabs.forEach( function(tab) {
-  tab.addEventListener('click', toggleTab );
+tabs.forEach(function (tab) {
+  tab.addEventListener('click', toggleTab);
 });
 function toggleTab(event) {
-  tabs.forEach( function(tab) {
+  tabs.forEach(function (tab) {
     tab.classList.remove('is-active');
   });
-  tabContents.forEach( function(content) {
+  tabContents.forEach(function (content) {
     content.classList.remove('is-active');
   });
 
@@ -151,16 +151,29 @@ modalBtns.forEach((btn) => {
     modalOverlay.classList.add('is-open');
   });
 });
-
-function modalClose() {
+modalOverlay.addEventListener('click', function () {
   const modalIsOpen = document.querySelector('.p-modal__content.is-open');
   modalIsOpen.classList.remove('is-open');
   modalOverlay.classList.remove('is-open');
-}
-
-modalOverlay.addEventListener('click', function() {
-  modalClose();
 });
+
+
+// ------------------------------------
+// モーダルに×ボタンを足すときはこっちの処理にする
+// 処理を関数にまとめた方が記述が少なくなる
+// ------------------------------------
+// const modalBtn = document.querySelector('.p-modal__btn');
+// function modalClose() {
+//   const modalIsOpen = document.querySelector('.p-modal__content.is-open');
+//   modalIsOpen.classList.remove('is-open');
+//   modalOverlay.classList.remove('is-open');
+// }
+// modalOverlay.addEventListener('click', function() {
+//   modalClose();
+// });
+// modalBtn.addEventListener('click', function() {
+//   modalClose();
+// });
 
 // ------------------------------------
 // アコーディオン
@@ -178,7 +191,7 @@ accordions.forEach(function (accordion) {
 // 難しいパターン、heightがautoだとアニメーションが動かないので処理が多め
 // ------------------------------------
 const terms = document.querySelectorAll('.p-accordion__term2');
-terms.forEach(function(term) {
+terms.forEach(function (term) {
   term.addEventListener('click', function (event) {
     const term = event.currentTarget;
     if (term.dataset.isOpen === 'false') {
@@ -214,56 +227,82 @@ terms.forEach(function(term) {
 
 // ------------------------------------
 // スクロール
-// 今回はIntersection Observer APIを使用
 // ------------------------------------
-// optionsやcallbackは他の場所でも使用される可能性があるので{}で囲んでます
 {
-  const options = {
-    root: null,
-    rootMargin: '-100px',
-    threshold: .5,
-  }
-  const callback = (entries, observer) => {
-    entries.forEach(function (entry) {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('is-active');
-        observer.unobserve(entry.target);
-      } else {
-        entry.target.classList.remove('is-active');
+  let timerId;
+  function imgFadeIn() {
+    const windowHeight = window.innerHeight;
+    const scrollY = window.scrollY;
+    const scrollImgs = document.querySelectorAll('.p-scroll');
+    scrollImgs.forEach(function (scrollImg) {
+      const imgOffsetY = scrollImg.offsetTop;
+      if (scrollY > imgOffsetY - windowHeight) {
+        scrollImg.classList.add('is-active');
       }
     });
-  };
+    timerId = null;
+  }
 
-  // インスタンス化
-  const observer = new IntersectionObserver(callback, options);
-  // 監視対象
-  const scrollImgs = document.querySelectorAll('.p-scroll');
-  scrollImgs.forEach(img => observer.observe(img));
+  window.addEventListener('scroll', function () {
+    if (!timerId) {
+      timerId = setTimeout(imgFadeIn, 300);
+    }
+  });
 }
+
+// ------------------------------------
+// パターン２ Intersection Observer APIを使用。パフォーマンスはこちらの方が良いです
+// ------------------------------------
+// optionsやcallbackは他の場所でも使用される可能性があるので{}で囲んでます
+// {
+//   const options = {
+//     root: null,
+//     rootMargin: '-100px',
+//     threshold: .5,
+//   }
+//   const callback = (entries, observer) => {
+//     entries.forEach(function (entry) {
+//       if (entry.isIntersecting) {
+//         entry.target.classList.add('is-active');
+//         observer.unobserve(entry.target);
+//       } else {
+//         entry.target.classList.remove('is-active');
+//       }
+//     });
+//   };
+
+//   インスタンス化
+//   const observer = new IntersectionObserver(callback, options);
+//   監視対象
+//   const scrollImgs = document.querySelectorAll('.p-scroll');
+//   scrollImgs.forEach(img => observer.observe(img));
+// }
 
 // ------------------------------------
 // スクロールでヘッダーの色を変える＆ページトップボタンの表示・非表示
 // ------------------------------------
-const header = document.querySelector('.p-header');
-const pageTop = document.querySelector('.p-page-top');
-let timerId;
+{
+  const header = document.querySelector('.p-header');
+  const pageTop = document.querySelector('.p-page-top');
+  let timerId;
 
-function scrollChange() {
-  const scroll = window.scrollY;
-  if (scroll > 300) {
-    header.style.backgroundColor = 'red';
-    pageTop.classList.add('is-active');
-  } else {
-    header.style.backgroundColor = 'white';
-    pageTop.classList.remove('is-active');
+  function scrollChange() {
+    const scroll = window.scrollY;
+    if (scroll > 300) {
+      header.style.backgroundColor = 'red';
+      pageTop.classList.add('is-active');
+    } else {
+      header.style.backgroundColor = 'white';
+      pageTop.classList.remove('is-active');
+    }
+    timerId = null;
   }
-  timerId = null;
+  window.addEventListener('scroll', function () {
+    if (!timerId) {
+      timerId = setTimeout(scrollChange, 300);
+    }
+  });
 }
-window.addEventListener('scroll', function() {
-  if (!timerId) {
-    timerId = setTimeout(scrollChange, 300);
-  }
-});
 
 // ------------------------------------
 // ページトップへ戻る
@@ -272,9 +311,8 @@ const scrollLinks = document.querySelectorAll('a[href="#"]');
 scrollLinks.forEach((scrollLink) => {
   scrollLink.addEventListener('click', (event) => {
     event.preventDefault();
-    const offsetTop = scrollLink.offsetTop;
     window.scrollTo({
-      top: offsetTop,
+      top: 0,
       behavior: 'smooth',
     });
   });
