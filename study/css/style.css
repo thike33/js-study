@@ -1,0 +1,14 @@
+@charset "UTF-8";
+
+.wrapper {
+  padding-block: 100px;
+}
+
+.box {
+  margin-inline: auto;
+  width: 400px;
+  height: 400px;
+  padding: 20px;
+  background-color: skyblue;
+  border: 20px solid red;
+}

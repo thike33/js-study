@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript 練習用</title>
+  <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+  <header class="l-header p-header">
+    <h1 class="p-header__title">JS練習</h1>
+    <button class="c-hamburger">
+      <span class="c-hamburger__top"></span>
+      <span class="c-hamburger__center"></span>
+      <span class="c-hamburger__bottom"></span>
+    </button>
+    <nav class="p-header__nav p-header-nav">
+      <ul class="p-header-nav__list">
+        <li class="p-header-nav__item">
+          <a href="" class="p-header-nav__link">ナビ１</a>
+        </li>
+        <li class="p-header-nav__item">
+          <a href="" class="p-header-nav__link">ナビ２</a>
+        </li>
+        <li class="p-header-nav__item">
+          <a href="" class="p-header-nav__link">ナビ３</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="l-section p-top-dom">
+      <div class="l-inner">
+        <h2 class="p-top-dom__title c-title">DOM操作</h2>
+        <div class="p-top-dom__list">
+          <div class="p-top-dom__item p-dom">
+            <h3 id="title" class="p-dom__title">IDからタイトルを取得</h3>
+          </div>
+          <div class="p-top-dom__item p-dom">
+            <p class="p-dom__text">クラスからテキストを取得</p>
+          </div>
+          <div class="p-top-dom__item p-dom">
+            <p class="p-dom__text p-dom__data" data-index-number="123456">データ属性から値を取得</p>
+          </div>
+          <div class="p-top-dom__item p-dom">
+            <p class="p-dom__text p-dom__previous">ul前の兄弟要素</p>
+            <ul class="p-dom__list">
+              <li class="p-dom__item p-dom__item1">リスト１</li>
+              <li class="p-dom__item p-dom__item2">リスト２</li>
+              <li class="p-dom__item p-dom__item3">リスト３</li>
+              <li class="p-dom__item p-dom__item4">リスト４</li>
+              <li class="p-dom__item p-dom__item5">リスト５</li>
+            </ul>
+            <p class="p-dom__text p-dom__next">ul後の兄弟要素</p>
+          </div>
+          <div class="p-top-dom__item p-dom">
+            <div class="p-dom__text p-dom__class">クラスを追加してテキストのCSSを変更</div>
+          </div>
+          <div class="p-top-dom__item p-dom">
+            <a href="https://google.com" class="p-dom__link">リンクの属性を取得・変更</a>
+          </div>
+          <div class="p-top-dom__item p-dom">
+            <div class="p-dom__box"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="l-section p-top-tab">
+      <div class="l-inner">
+        <h2 class="p-top-tab__title c-title">タブメニュー</h2>
+        <div class="p-tab">
+          <div class="p-tab__btns">
+            <button class="p-tab__btn c-btn is-active" data-id="tab1">１番目</button>
+            <button class="p-tab__btn c-btn" data-id="tab2">２番目</button>
+            <button class="p-tab__btn c-btn" data-id="tab3">３番目</button>
+          </div>
+          <div class="p-tab__contents">
+            <div id="tab1" class="p-tab__content is-active">
+              <p class="p-tab__text">１番目のコンテンツのテキスト</p>
+            </div>
+            <div id="tab2" class="p-tab__content">
+              <p class="p-tab__text">２番目のコンテンツのテキスト</p>
+            </div>
+            <div id="tab3" class="p-tab__content">
+              <p class="p-tab__text">３番目のコンテンツのテキスト</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="l-section p-top-modal">
+      <div class="l-inner">
+        <h2 class="p-top-modal__title c-title">モーダル</h2>
+        <div class="p-modal">
+          <div class="p-modal__btns">
+            <button class="p-modal__btn c-btn" data-id="modal1">１番目</button>
+            <button class="p-modal__btn c-btn" data-id="modal2">２番目</button>
+            <button class="p-modal__btn c-btn" data-id="modal3">３番目</button>
+          </div>
+          <div id="modal1" class="p-modal__content" data-modal="modal1">
+            <div class="p-modal__img">
+              <img src="./img/test.jpg" alt="">
+            </div>
+            <div class="p-modal__body">
+              <p class="p-modal__title">１番目のモーダルタイトル</p>
+              <p class="p-modal__text">閉じるには暗い部分をクリック！</p>
+            </div>
+          </div>
+          <div id="modal2" class="p-modal__content" data-modal="modal2">
+            <div class="p-modal__img">
+              <img src="./img/test2.jpg" alt="">
+            </div>
+            <div class="p-modal__body">
+              <p class="p-modal__title">２番目のモーダルタイトル</p>
+              <p class="p-modal__text">閉じるには暗い部分をクリック！</p>
+            </div>
+          </div>
+          <div id="modal3" class="p-modal__content" data-modal="modal3">
+            <div class="p-modal__img">
+              <img src="./img/test3.jpg" alt="">
+            </div>
+            <div class="p-modal__body">
+              <p class="p-modal__title">３番目のモーダルタイトル</p>
+              <p class="p-modal__text">閉じるには暗い部分をクリック！</p>
+            </div>
+          </div>
+          <div class="p-modal__overlay"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="l-section p-top-accordion">
+      <div class="l-inner">
+        <h2 class="p-top-accordion__title c-title">アコーディオン</h2>
+        <dl class="p-accordion">
+          <div class="p-accordion__item">
+            <dt class="p-accordion__term">アコーディオン１</dt>
+            <dd class="p-accordion__description">アコーディオン１の内容</dd>
+          </div>
+          <div class="p-accordion__item">
+            <dt class="p-accordion__term">アコーディオン２</dt>
+            <dd class="p-accordion__description">アコーディオン２の内容</dd>
+          </div>
+          <div class="p-accordion__item">
+            <dt class="p-accordion__term">アコーディオン３</dt>
+            <dd class="p-accordion__description">アコーディオン３の内容</dd>
+          </div>
+        </dl>
+        <dl class="p-accordion">
+          <div class="p-accordion__item2">
+            <dt class="p-accordion__term2" data-is-open="false">ここだけ別実装アコーディオン１</dt>
+            <div class="p-accordion__inner">
+              <dd class="p-accordion__description2">別実装の内容１</dd>
+            </div>
+          </div>
+          <div class="p-accordion__item2">
+            <dt class="p-accordion__term2" data-is-open="false">ここだけ別実装アコーディオン２</dt>
+            <div class="p-accordion__inner">
+              <dd class="p-accordion__description2">別実装の内容２</dd>
+            </div>
+          </div>
+        </dl>
+      </div>
+      </div>
+    </section>
+
+    <section class="l-section p-top-scroll">
+      <div class="l-inner">
+        <h2 class="p-top-scroll__title c-title">スクロール</h2>
+        <div class="p-top-scroll__wrapper">
+          <div class="p-scroll">
+            <div class="p-scroll__img">
+              <img src="./img/test.jpg" alt="">
+            </div>
+            <p class="p-scroll__text">スクロールのテキストスクロールのテキストスクロールのテキストスクロールのテキストスクロールのテキストスクロールのテキスト</p>
+          </div>
+          <div class="p-scroll">
+            <div class="p-scroll__img">
+              <img src="./img/test2.jpg" alt="">
+            </div>
+            <p class="p-scroll__text">スクロールのテキストスクロールのテキストスクロールのテキストスクロールのテキストスクロールのテキストスクロールのテキスト</p>
+          </div>
+          <div class="p-scroll">
+            <div class="p-scroll__img">
+              <img src="./img/test3.jpg" alt="">
+            </div>
+            <p class="p-scroll__text">スクロールのテキストスクロールのテキストスクロールのテキストスクロールのテキストスクロールのテキストスクロールのテキスト</p>
+          </div>
+          <div class="p-scroll">
+            <div class="p-scroll__img">
+              <img src="./img/test2.jpg" alt="">
+            </div>
+            <p class="p-scroll__text">スクロールのテキストスクロールのテキストスクロールのテキストスクロールのテキストスクロールのテキストスクロールのテキスト</p>
+          </div>
+          <div class="p-scroll">
+            <div class="p-scroll__img">
+              <img src="./img/test.jpg" alt="">
+            </div>
+            <p class="p-scroll__text">スクロールのテキストスクロールのテキストスクロールのテキストスクロールのテキストスクロールのテキストスクロールのテキスト</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="l-page-top p-page-top">
+    <a href="#" class="p-page-top__link">
+      <img src="./img/page-top.png" alt="">
+    </a>
+  </div>
+
+  <footer class="p-footer">
+    <p class="p-footer__title">フッター</p>
+  </footer>
+
+  <script src="./js/answer.js"></script>
+</body>
+
+</html>
