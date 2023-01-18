@@ -62,24 +62,68 @@
 // ハンバーガーメニュー
 // body,hamburger,navにis-openを付け外しする
 // ------------------------------------
-
+const headerBtn = document.querySelector('.c-hamburger');
+const headerNav = document.querySelector('.p-header-nav');
+headerBtn.addEventListener('click', () => {
+  headerBtn.classList.toggle('is-open');
+  document.body.classList.toggle('is-open');
+  headerNav.classList.toggle('is-open');
+})
 
 // ------------------------------------
 // タブメニュー
 // tabとcontentのis-activeを外してから付ける。data属性とidを上手く連携させる
 // ------------------------------------
-
+const tabs = document.querySelectorAll('.p-tab__btn');
+const tabContents = document.querySelectorAll('.p-tab__content');
+tabs.forEach(function (tab) {
+  tab.addEventListener('click', () => {
+    tabs.forEach(function (tab) {
+      tab.classList.remove('is-active');
+    })
+    tabContents.forEach(function (content) {
+      content.classList.remove('is-active');
+    });
+    const id = tab.getAttribute('data-id');
+    const content = document.getElementById(id);
+    content.classList.add('is-active');
+  });
+});
 
 // ------------------------------------
 // モーダル
 // これもdata属性とidを上手く連携させる
 // ------------------------------------
+const modalBtns = document.querySelectorAll('.p-modal__btn');
+const modalOverlay = document.querySelector('.p-modal__overlay');
+
+modalBtns.forEach( function(btn) {
+  btn.addEventListener('click', function() {
+    const id = btn.getAttribute('data-id');
+    const modalTarget = document.getElementById(id);
+    modalTarget.classList.add('is-open');
+    modalOverlay.classList.add('is-open');
+  });
+});
+function modalClose() {
+  const modalIsOpen = document.querySelector('.p-modal__content.is-open');
+  modalIsOpen.classList.remove('is-open');
+  modalOverlay.classList.remove('is-open');
+}
+modalOverlay.addEventListener('click', function() {
+  modalClose();
+});
 
 
 // ------------------------------------
 // アコーディオン
 // ------------------------------------
-
+const accordions = document.querySelectorAll('.p-accordion__item');
+accordions.forEach( function(accordion) {
+  accordion.addEventListener('click', function() {
+    
+  });
+});
 
 // ------------------------------------
 // アコーディオン(jQueryのslideToggleと同じ挙動にする)
